@@ -18,7 +18,7 @@ def sensible(plaintext, dictionary):
     if "the" in plaintext:
         count = 0
         for word in dictionary:
-            if word in plaintext:
+            if word in str.lower(plaintext):
                 count = count + 1
         if count > 2:
             return True
@@ -28,9 +28,13 @@ if __name__ == "__main__":
     #asks user for ciphertext and keylength:
     ciphertext = input("Fill in the ciphertext: ")
     keylength = int(input("Fill in the keylength: "))
-    symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'w', 'x', 'y', 'z']
-    keys = itertools.permutations(symbols, keylength)
+
+    #creates the list of possible keys:
+    symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    if str.isupper(ciphertext):
+        for index in range(len(symbols)):
+            symbols[index] = str.upper(symbols[index])
+    keys = itertools.product(symbols, repeat=keylength)
 
     #creating list of possible words to be in the plaintext:
     dictionary = open("words.txt", "r")
@@ -46,4 +50,3 @@ if __name__ == "__main__":
         plaintext = decrypt(ciphertext, key)
         if sensible(plaintext, res):
            print("plaintext: " + plaintext + ", key: " + str(key))
-
