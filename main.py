@@ -1,5 +1,6 @@
 import itertools
 
+
 #decrypts the ciphertext with a certain key:
 def decrypt(ciphertext, key):
     key_length = len(key)
@@ -24,9 +25,11 @@ def sensible(plaintext, dictionary):
 
 
 if __name__ == "__main__":
-    ciphertext = "qhcyrjxurstxzzkoamazzxerylpqajehdrymiwazzxnvkdwablttzyeqhcyrxhztklmprymgqanalrrgdhcfycrifcwpiyqagnvkdwablyhtq"
-    keylength = 5
-    symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z']
+    #asks user for ciphertext and keylength:
+    ciphertext = input("Fill in the ciphertext: ")
+    keylength = int(input("Fill in the keylength: "))
+    symbols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z']
     keys = itertools.permutations(symbols, keylength)
 
     #creating list of possible words to be in the plaintext:
