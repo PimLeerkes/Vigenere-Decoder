@@ -19,12 +19,11 @@ def sensible(plaintext, dictionary):
         count = 0
         for word in dictionary:
             if word in str.lower(plaintext):
-                count = count + 1
+                count += 1
         if count > 2:
             return True
-
-
-if __name__ == "__main__":
+        
+def main():
     #asks user for ciphertext and keylength:
     ciphertext = input("Fill in the ciphertext: ")
     keylength = int(input("Fill in the keylength: "))
@@ -50,3 +49,7 @@ if __name__ == "__main__":
         plaintext = decrypt(ciphertext, key)
         if sensible(plaintext, res):
            print("plaintext: " + plaintext + ", key: " + str(key))
+
+
+if __name__ == "__main__":
+    main()
